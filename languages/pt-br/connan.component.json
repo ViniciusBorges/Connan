@@ -1,0 +1,21 @@
+{
+	'add error': 'Erro ao adicionar',
+	'add success': 'Adicionado com sucesso',
+	'edit confirm': 'Você tem certeza que deseja adicionar?',
+	
+	'edit error': 'Erro ao editar',
+	'edit success': 'Editado com sucesso',
+	'edit confirm': 'Você tem certeza que deseja editar?',
+	
+	'delete error': 'Erro ao deletar',
+	'delete success': 'Deletado com sucesso',
+	'edit confirm': 'Você tem certeza que deseja deletar?',
+	
+	'publish error': 'Erro ao publicar',
+	'publish success': 'Publicado com sucesso',
+	'edit confirm': 'Você tem certeza que deseja publicar?',
+	
+	'unpublish error': 'Erro ao despublicar',
+	'unpublish success': 'Despublicado com sucesso',
+	'edit confirm': 'Você tem certeza que deseja despublicar?',
+}
