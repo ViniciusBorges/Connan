@@ -1,5 +1,8 @@
-Name:
+Class Name:
 	/Connan(_^[A-Z][a-zA-Z0-9]{1,}{0,})?_(^[A-Z][a-zA-Z0-9])/
+	Ex:
+		Name: Connan_Path_To_Lib
+		File: Connan/Path/To/Lib.php
 
 Comments:
 	class definition:
@@ -17,4 +20,6 @@ Comments:
 		 * ${methodName}
 		 * @description
 		 * (opcional) @param: ${paramName} {${paramType}} 
+		 * @access: ${access}
+		 * @return: ${return}
 		 */
