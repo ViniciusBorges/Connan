@@ -11,8 +11,8 @@
 		public function __construct()
 		{
 			$application =& Connan_Application::getInstance();
-			/*$this->addControllerPath($application->getPath('controller'), 1);
-			$this->addModelPath($application->getPath('model'), 1);*/
+			$this->addControllerPath($application->getPath('controller'), 1);
+			$this->addModelPath($application->getPath('model'), 1);
 			$this->addClassPath($application->getPath('connan'), 1);
 			$this->addClassPath($application->getPath('class'), 2);
 			
@@ -23,6 +23,18 @@
 		public function addClassPath($path, $priority)
 		{
 			$this->_paths['class'][$path] = $priority;
+			return $this;
+		}
+		
+		public function addControllerPath($path, $priority)
+		{
+			$this->_paths['controller'][$path] = $priority;
+			return $this;
+		}
+		
+		public function addModelPath($path, $priority)
+		{
+			$this->_paths['model'][$path] = $priority;
 			return $this;
 		}
 		
@@ -52,5 +64,10 @@
 			{
 				throw new Connan_Loader_Exception('class not found');
 			}
+		}
+		
+		public function loadController($name)
+		{
+			
 		}
 	}
