@@ -1,5 +1,8 @@
 <?php
 	
-	class Connan_Loader_Exception extends Exception{}
+	class Connan_LoaderException extends ConnanException
+	{
+		
+	}
 	
 ?>

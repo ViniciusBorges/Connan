@@ -9,6 +9,9 @@
 				$loader =& Connan_Loader::getInstance();
 				switch(true)
 				{
+					case preg_match('/[^_]Exception/', $name):
+						return $loader->loadException($name);
+					break;
 					case preg_match('/[^_]Interface$/', $name):
 						return $loader->loadInterface($name);
 					break;

@@ -9,7 +9,8 @@
 	{
 		define('DS', DIRECTORY_SEPARATOR);
 	}
-	
+
+	require CONNAN_PATH_BASE.DS.'Util/Singleton.php';
 	require CONNAN_PATH_BASE.DS.'Loader.php';
 	require CONNAN_PATH_BASE.DS.'Application.php';
 	

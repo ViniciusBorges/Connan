@@ -9,9 +9,10 @@ Comments:
 		/**
 		 * ${className}
 		 * @package: ${package}
-		 * (opcional) @author: ${author}
-		 * (opcional) @contact: ${contact}
-		 * (opcional) @url: ${url}
+		 * (optional) @author: ${author}
+		 * (optional) @contact: ${contact}
+		 * (optional) @url: ${url}
+		 * (optional) customs vars
 		 * @description: ${description}
 		 */
 	
@@ -19,7 +20,8 @@ Comments:
 		/**
 		 * ${methodName}
 		 * @description
-		 * (opcional) @param: ${paramName} {${paramType}} 
+		 * (optional) @param: ${paramName} {${paramType}} 
+		 * (optional) customs vars
 		 * @access: ${access}
 		 * @return: ${return}
 		 */

@@ -62,7 +62,37 @@
 			}
 			else
 			{
-				throw new Connan_Loader_Exception('class not found');
+				throw new Connan_LoaderException('class not found');
+				return false;
+			}
+		}
+		
+		public function loadException($name)
+		{
+			$_file = '';
+			$_priority = 0;
+			
+			$name = preg_replace('/(^Connan_)(Exception$)/', '', $name);
+			$name = str_replace('_', DS, $name).DS.'Exception.php';
+			
+			foreach($this->_paths['class'] as $path => $priority)
+			{
+				if(file_exists($path.DS.$name) && $priority > $_priority)
+				{
+					$_file = $path.DS.$name;
+					$_priority = $priority;
+				}
+			}
+			
+			if($_file != '')
+			{
+				require_once $_file;
+				return true;
+			}
+			else
+			{
+				throw new Connan_LoaderException('exception not found');
+				return false;
 			}
 		}
 		
