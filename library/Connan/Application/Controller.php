@@ -1,4 +1,4 @@
-<?php /*é*/
+<?php
 
 	abstract class Connan_Application_Controller extends Connan_Util_Object
 	{
@@ -56,9 +56,9 @@
 			$component_path = $application->getPath('view');
 			$template_path =
 				$application->getPath('templates').DS.
-				$application->getTemplate().DS.
+				$application->getTemplateName().DS.
 				'override'.DS.'components'.DS.
-				$application->getComponent();
+				$application->getComponentName();
 			
 			if(file_exists($template_path.DS.$this->view.'.php'))
 			{

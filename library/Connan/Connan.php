@@ -12,6 +12,9 @@
 
 	require CONNAN_PATH_BASE.DS.'Util/Singleton.php';
 	require CONNAN_PATH_BASE.DS.'Loader.php';
+	require CONNAN_PATH_BASE.DS.'Factory.php';
+	require CONNAN_PATH_BASE.DS.'Session.php';
 	require CONNAN_PATH_BASE.DS.'Application.php';
 	
 	$loader = Connan_Loader::getInstance();
+	

@@ -11,6 +11,7 @@
 		protected $controller = '';
 		protected $view = '';
 		protected $template = '';
+		protected $language = '';
 		
 		public function __construct()
 		{
@@ -57,11 +58,18 @@
 		public function setView($view)
 		{
 			$this->view = $view;
+			return $this;
 		}
 		
 		public function setTemplate($template)
 		{
 			$this->template = $template;
+			return $this;
+		}
+		
+		public function setLanguage($language)
+		{
+			$this->language = $language;
 			return $this;
 		}
 		
@@ -83,6 +91,11 @@
 		public function getTemplateName()
 		{
 			return $this->template;
+		}
+		
+		public function getLanguage()
+		{
+			return $this->language;
 		}
 		
 		public function getMessages()
@@ -142,7 +155,7 @@
 		{
 			if(is_null($this->_controller))
 			{
-				$this->loadController();
+				$this->loadComponent();
 			}
 			if($this->_redirect != '')
 			{

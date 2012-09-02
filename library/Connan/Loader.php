@@ -10,54 +10,20 @@
 		
 		public function __construct()
 		{
-			$application =& Connan_Application::getInstance();
-			$this->addControllerPath($application->getPath('controller'), 1);
-			$this->addModelPath($application->getPath('model'), 1);
-			$this->addClassPath($application->getPath('connan'), 1);
-			$this->addClassPath($application->getPath('class'), 2);
-			
 			$this->loadClass('Connan_Loader_Autoload');
 			spl_autoload_register(array('Connan_Loader_Autoload', 'autoload'));
 		}
 		
-		public function addClassPath($path, $priority)
-		{
-			$this->_paths['class'][$path] = $priority;
-			return $this;
-		}
-		
-		public function addControllerPath($path, $priority)
-		{
-			$this->_paths['controller'][$path] = $priority;
-			return $this;
-		}
-		
-		public function addModelPath($path, $priority)
-		{
-			$this->_paths['model'][$path] = $priority;
-			return $this;
-		}
-		
 		public function loadClass($name)
 		{
-			$_file = '';
-			$_priority = 0;
-			
 			$name = preg_replace('/^Connan/', '', $name);
 			$name = str_replace('_', '/', $name).'.php';
 			
-			foreach($this->_paths['class'] as $path => $priority)
-			{
-				if(file_exists($path.$name) && $priority > $_priority)
-				{
-					$_file = $path.$name;
-					$_priority = $priority;
-				}
-			}
+			$file = CONNAN_PATH_BASE.DS.$name;
 			
-			if($_file != '')
+			if(file_exists($file))
 			{
-				require_once $_file;
+				require_once $file;
 				return true;
 			}
 			else
@@ -73,24 +39,13 @@
 		
 		public function loadException($name)
 		{
-			$_file = '';
-			$_priority = 0;
-			
-			$name = preg_replace('/(^Connan_)(Exception$)/', '', $name);
+			$name = preg_replace('/(^Connan|Exception$)/', '', $name);
 			$name = str_replace('_', DS, $name).DS.'Exception.php';
+			$file = CONNAN_PATH_BASE.DS.$name;
 			
-			foreach($this->_paths['class'] as $path => $priority)
+			if(file_exists($file))
 			{
-				if(file_exists($path.DS.$name) && $priority > $_priority)
-				{
-					$_file = $path.DS.$name;
-					$_priority = $priority;
-				}
-			}
-			
-			if($_file != '')
-			{
-				require_once $_file;
+				require_once $file;
 				return true;
 			}
 			else
@@ -106,24 +61,15 @@
 		
 		public function loadController($name)
 		{
-			$_file = '';
-			$_priority = 0;
-			
-			$name = preg_replace('/(^Connan_)(Controller$)/', '', $name);
+			$name = preg_replace('/(^Connan_|Controller$)/', '', $name);
 			$name = str_replace('_', DS, $name);
 			$name .= '.php';
-			
-			foreach($this->_paths['controller'] as $path => $priority)
+			$application = Connan_Factory::getApplication();
+			$path = $application->getPath('controller');
+			$file = $path.DS.$name;
+			if(file_exists($file))
 			{
-				if(file_exists($path.DS.$name) && $priority > $_priority)
-				{
-					$_file = $path.DS.$name;
-				}
-			}
-			
-			if($_file != '')
-			{
-				require_once $_file;
+				require_once $file;
 				return true;
 			}
 			else
@@ -139,24 +85,16 @@
 		
 		public function loadModel($name)
 		{
-			$_file = '';
-			$_priority = 0;
-				
-			$name = preg_replace('/(^Connan_)(Model$)/', '', $name);
+			$name = preg_replace('/(^Connan_|Model$)/', '', $name);
 			$name = str_replace('_', DS, $name);
 			$name .= '.php';
+			$application = Connan_Factory::getApplication();
+			$path = $application->getPath('model');
+			$file = $path.DS.$name;;
 				
-			foreach($this->_paths['model'] as $path => $priority)
+			if(file_exists($file))
 			{
-				if(file_exists($path.DS.$name) && $priority > $_priority)
-				{
-					$_file = $path.DS.$name;
-				}
-			}
-				
-			if($_file != '')
-			{
-				require_once $_file;
+				require_once $file;
 				return true;
 			}
 			else
