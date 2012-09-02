@@ -62,7 +62,11 @@
 			}
 			else
 			{
-				throw new Connan_LoaderException('class not found');
+				ConnanException::raise(array(
+					'code' => 300,
+					'message' => 'class not found',
+					'package' => 'loader'
+				));
 				return false;
 			}
 		}
@@ -91,13 +95,78 @@
 			}
 			else
 			{
-				throw new Connan_LoaderException('exception not found');
+				ConnanException::raise(array(
+					'code' => 300,
+					'message' => 'exception not found',
+					'package' => 'loader'
+				));
 				return false;
 			}
 		}
 		
 		public function loadController($name)
 		{
+			$_file = '';
+			$_priority = 0;
 			
+			$name = preg_replace('/(^Connan_)(Controller$)/', '', $name);
+			$name = str_replace('_', DS, $name);
+			$name .= '.php';
+			
+			foreach($this->_paths['controller'] as $path => $priority)
+			{
+				if(file_exists($path.DS.$name) && $priority > $_priority)
+				{
+					$_file = $path.DS.$name;
+				}
+			}
+			
+			if($_file != '')
+			{
+				require_once $_file;
+				return true;
+			}
+			else
+			{
+				ConnanException::raise(array(
+					'code' => 404,
+					'message' => 'controler not found',
+					'package' => 'loader'
+				));
+				return false;
+			}
+		}
+		
+		public function loadModel($name)
+		{
+			$_file = '';
+			$_priority = 0;
+				
+			$name = preg_replace('/(^Connan_)(Model$)/', '', $name);
+			$name = str_replace('_', DS, $name);
+			$name .= '.php';
+				
+			foreach($this->_paths['model'] as $path => $priority)
+			{
+				if(file_exists($path.DS.$name) && $priority > $_priority)
+				{
+					$_file = $path.DS.$name;
+				}
+			}
+				
+			if($_file != '')
+			{
+				require_once $_file;
+				return true;
+			}
+			else
+			{
+				ConnanException::raise(array(
+						'code' => 404,
+						'message' => 'model not found',
+						'package' => 'loader'
+				));
+				return false;
+			}
 		}
 	}

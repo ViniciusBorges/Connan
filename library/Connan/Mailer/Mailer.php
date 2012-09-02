@@ -572,7 +572,7 @@ class Connan_Mailer_Mailer extends Connan_Util_Singleton
      * @return bool
      */
     function SmtpConnect() {
-        if($this->smtp == NULL) { $this->smtp = new SMTP(); }
+        if($this->smtp == NULL) { $this->smtp = new Connan_Mailer_Smtp(); }
 
         $this->smtp->do_debug = $this->SMTPDebug;
         $hosts = explode(";", $this->Host);
@@ -651,7 +651,7 @@ class Connan_Mailer_Mailer extends Connan_Util_Singleton
             $this->SetError("Could not load language file");
             return false;
         }
-        $this->language = $PHPMAILER_LANG;
+        $this->language = 'pt-br';
     
         return true;
     }

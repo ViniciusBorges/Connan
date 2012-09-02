@@ -36,4 +36,14 @@
 		{
 			return Connan_Config::getInstance();
 		}
+		
+		public static function &getDocument()
+		{
+			return self::getApplication()->getDocument();
+		}
+		
+		public static function &getTemplate()
+		{
+			return Connan_Application_Template::getInstance();
+		}
 	}

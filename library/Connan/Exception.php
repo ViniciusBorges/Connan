@@ -6,6 +6,11 @@
 		
 		public static function raise(Array $error)
 		{
+			/**
+			 * Codes:
+			 * 404: fatal, not found
+			 * 300: warning, not found
+			 */
 			$default = array(
 				'code' => 0,
 				'message' => '',

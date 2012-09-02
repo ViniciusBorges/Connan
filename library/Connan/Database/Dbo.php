@@ -32,7 +32,11 @@
 			}
 			else
 			{
-				throw new Connan_DatabaseException('dba not found');
+				ConnanException::raise(array(
+					'code' => 404,
+					'message' => 'dba not found',
+					'package' => 'database'
+				));
 			}
 		}
 		

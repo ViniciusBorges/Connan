@@ -1,0 +1,13 @@
+Controller:
+	/Connan_[A-Z]{1}[a-z0-9]{1,}Controller/
+	Ex:
+		Controller name: Connan_ExampleController
+		Controller file: controllers/Example.php
+
+View:
+	/[a-z]{1,}View/
+	Ex:
+		Controller name: example
+		View name: example
+		View method: exampleView()
+		View file: views/Example/example.php
