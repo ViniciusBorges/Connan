@@ -54,6 +54,7 @@
 		
 		public function component($component = null)
 		{
+			echo $component;
 			if(is_null($component))
 			{
 				return $component;

@@ -2,8 +2,11 @@
 
 	class Connan_ArticlesController extends Connan_Application_Controller
 	{
-		public function indexView()
+		public function construct()
 		{
-			echo 'ok';
+		}
+		
+		public function blogView()
+		{
 		}
 	}

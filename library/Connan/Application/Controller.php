@@ -1,24 +1,29 @@
 <?php
 
-	abstract class Connan_Application_Controller extends Connan_Util_Object
+	class Connan_Application_Controller extends Connan_Util_Object
 	{
 		protected $component = '';
 		protected $controller = '';
 		protected $view = '';
+		protected $_view = null;
 		private $prepared = false;
 		protected $model = null;
+		protected $data = array();
 		
 		public function __construct()
 		{
+			$this->data = (object) array();
 			$application =& Connan_Factory::getApplication();
 			$this->component = $application->getComponentName();
 			$this->controller = $application->getControllerName();
 			$this->view = $application->getViewName();
 			
-			if(method_exists($this, 'contruct'))
+			if(method_exists($this, 'construct'))
 			{
 				$this->construct();
 			}
+			
+			$this->prepareView();
 		}
 		
 		public function getModel()
@@ -44,7 +49,7 @@
 				ConnanException::raise(array(
 					'code' => 404,
 					'message' => 'view not found',
-					'package' => 'pplication'
+					'package' => 'aplication'
 				));
 				return false;
 			}
@@ -52,33 +57,12 @@
 		
 		public function renderView()
 		{
-			$application =& Connan_Factory::getApplication();
-			$component_path = $application->getPath('view');
-			$template_path =
-				$application->getPath('templates').DS.
-				$application->getTemplateName().DS.
-				'override'.DS.'components'.DS.
-				$application->getComponentName();
-			
-			if(file_exists($template_path.DS.$this->view.'.php'))
-			{
-				require $template_path.DS.$this->view.'.php';
-				return true;
-			}
-			else if(file_exists($component_path.DS.$this->view.'.php'))
-			{
-				require $component_path.DS.$this->view.'.php';
-				return true;
-			}
-			else
-			{
-				ConnanException::raise(array(
-					'code' => 404,
-					'message' => 'view not found',
-					'package' => 'application'
-				));
-				return false;
-			}
+			$this->_view = new Connan_Application_View($this->component, $this->controller, $this->view, $this->data);
+		}
+		
+		public function set($key, $value = '')
+		{
+			$this->data->$key = $value;
 		}
 		
 		public function render()
@@ -93,6 +77,6 @@
 		public function setRedirect($url, $messages = null)
 		{
 			$application =& Connan_Factory::getApplication();
-			$application->getRedirect($url, $messages);
+			$application->setRedirect($url, $messages);
 		}
 	}

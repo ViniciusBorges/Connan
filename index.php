@@ -1,5 +1,5 @@
 <?php
-	
+
 	/**
 	 * Get defaults application info
 	 */
@@ -8,11 +8,11 @@
 	$default_view = 'blog';
 	$default_template = 'connan';
 	$default_language = 'pt-br';
-	
+
 	define('CONNAN_PATH_APPLICATION', dirname(__FILE__));
-	
+
 	require 'library/Connan/Connan.php';
-	
+
 	/**
 	 * Custom application info by request values
 	 */
@@ -21,8 +21,8 @@
 	$view = Connan_Request::getView($default_view);
 	$template = Connan_Request::getTemplate($default_template);
 	$language = Connan_Request::getLanguage($default_language);
-	
-	
+
+
 	$application = Connan_Factory::getApplication();
 	/**
 	 * Set application paths
@@ -35,7 +35,7 @@
 		'configuration' => CONNAN_PATH_APPLICATION.DS.'configuration',
 		'templates' => CONNAN_PATH_APPLICATION.DS.'templates',
 	));
-	
+
 	/**
 	 * Set application values
 	 */
@@ -45,10 +45,11 @@
 		->setView($view)
 		->setTemplate($template)
 		->setLanguage($language);
-	
+
 	/**
 	 * Finish application execution
 	 */
 	$application->redirect();
 	$application->render();
 	
+	print_r(ConnanException::$_messages);

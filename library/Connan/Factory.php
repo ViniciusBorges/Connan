@@ -39,7 +39,7 @@
 		
 		public static function &getDocument()
 		{
-			return self::getApplication()->getDocument();
+			return Connan_Application_Document::getInstance();
 		}
 		
 		public static function &getTemplate()
