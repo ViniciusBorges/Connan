@@ -126,6 +126,16 @@
 			return $this->_dba->loadObjectList($this->_query);
 		}
 		
+		public function tableExists($table)
+		{
+			$table = $this->value($table);
+			foreach($this->_prefix as $key => $value)
+			{
+				$table = str_replace($key, $value, $table);
+			}
+			return $this->_dba->tableExists($table, $this->_link);
+		}
+		
 		public function disconnect()
 		{
 			if(!is_null($this->_link))

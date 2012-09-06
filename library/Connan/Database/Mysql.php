@@ -61,6 +61,11 @@
 			return $arr;
 		}
 		
+		public function tableExists($table, $link)
+		{
+			return (bool) mysql_num_rows(mysql_query("SHOW TABLES LIKE '".$table."'", $link));
+		}
+		
 		public function disconnect($link)
 		{
 			return mysql_close($link);

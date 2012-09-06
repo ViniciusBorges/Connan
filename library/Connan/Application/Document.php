@@ -54,10 +54,9 @@
 		
 		public function component($component = null)
 		{
-			echo $component;
 			if(is_null($component))
 			{
-				return $component;
+				return $this->_component;
 			}
 			$this->_component = $component;
 			return $this;

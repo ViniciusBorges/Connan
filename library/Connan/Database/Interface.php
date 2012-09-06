@@ -18,5 +18,7 @@
 		
 		public function loadObjectList($query);
 		
+		public function tableExists($query, $link);
+		
 		public function disconnect($link);
 	}

@@ -8,5 +8,6 @@
 		
 		public function blogView()
 		{
+			$this->set('title', 'Controller title');
 		}
 	}

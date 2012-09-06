@@ -51,5 +51,3 @@
 	 */
 	$application->redirect();
 	$application->render();
-	
-	print_r(ConnanException::$_messages);
