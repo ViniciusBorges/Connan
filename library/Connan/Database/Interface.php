@@ -20,5 +20,7 @@
 		
 		public function tableExists($query, $link);
 		
+		public function getInsertId($link);
+		
 		public function disconnect($link);
 	}

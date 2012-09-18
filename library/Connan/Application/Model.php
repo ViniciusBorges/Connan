@@ -39,6 +39,16 @@
 		
 		public function addPrefix($mask, $prefix)
 		{
-			$this->db->addPrefix($mask, $prefix);
+			return $this->db->addPrefix($mask, $prefix);
+		}
+		
+		public function tableExists($table)
+		{
+			return $this->db->tableExists($table);
+		}
+		
+		public function getInsertId()
+		{
+			return $this->db->getInsertId();
 		}
 	}

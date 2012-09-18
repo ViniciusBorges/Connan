@@ -15,25 +15,26 @@
 		public static function getVar($key, $default = '', $method = 'request', $type = null, $secure = true)
 		{
 			$var = '_'.strtoupper($method);
+			$res = isset($GLOBALS[$var][$key]);
 			switch(strtolower($type))
 			{
 				case 'string':
-					$res = isset($GLOBALS[$var][$key]) ? (string) $GLOBALS[$var][$key] : $default;
+					$res = $res ? (string) $GLOBALS[$var][$key] : $default;
 				break;
 				case 'int':
-					$res = isset($GLOBALS[$var][$key]) ? (int) $GLOBALS[$var][$key] : $default;
+					$res = $res ? (int) $GLOBALS[$var][$key] : $default;
 				break;
 				case 'array':
-					$res = isset($GLOBALS[$var][$key]) ? (array) $GLOBALS[$var][$key] : $default;
+					$res = $res ? (array) $GLOBALS[$var][$key] : $default;
 				break;
 				case 'object':
-					$res = isset($GLOBALS[$var][$key]) ? (object) $GLOBALS[$var][$key] : $default;
+					$res = $res ? (object) $GLOBALS[$var][$key] : $default;
 				break;
 				default:
-					$res = isset($GLOBALS[$var][$key]) ? $GLOBALS[$var][$key] : $default;
+					$res = $res ? $GLOBALS[$var][$key] : $default;
 				break;
 			}
-			return is_string($res) && $secure === true ? addcslashes($res, "%_'.\"") : $res;
+			return is_string($res) && $secure === true ? addcslashes($res, '%\'."') : $res;
 		}
 		
 		/*
@@ -46,7 +47,7 @@
 		public static function issetVar($key, $method = 'request')
 		{
 			$var = '_'.strtoupper($method);
-			return isset($$var[$key]);
+			return isset($GLOBALS[$var][$key]);
 		}
 		
 		/*
