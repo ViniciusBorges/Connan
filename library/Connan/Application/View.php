@@ -9,7 +9,7 @@
 		public function __construct($component, $controller, $view, $data = array())
 		{
 			$this->component = $component;
-			$this->controller = strtolower($controller);
+			$this->controller = $controller;
 			$this->view = $view;
 			foreach($data as $key => $value)
 			{

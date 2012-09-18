@@ -66,11 +66,6 @@
 			return (bool) mysql_num_rows(mysql_query("SHOW TABLES LIKE '".$table."'", $link));
 		}
 		
-		public function getInsertId($link)
-		{
-			return mysql_insert_id($link);
-		}
-		
 		public function disconnect($link)
 		{
 			return mysql_close($link);

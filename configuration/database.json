@@ -1,8 +1,0 @@
-{
-	hostname: 'localhost',
-	username: 'root',
-	password: '',
-	database: 'connan',
-	caching: false,
-	dba: 'mysql'
-}
